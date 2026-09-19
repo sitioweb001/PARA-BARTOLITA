@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Flores amarillas para mi Bartolita 💛</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌼</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Fondo de partículas y pétalos, se repite detrás de toda la página -->
+<canvas id="fondo-particulas"></canvas>
+<div id="capa-petalos"></div>
+
+<!-- ============ PANTALLA INICIAL ============ -->
+<section id="pantalla-inicial">
+  <div class="flores-borde flores-borde--arriba" aria-hidden="true"></div>
+  <div class="flores-borde flores-borde--abajo" aria-hidden="true"></div>
+
+  <div class="inicial-contenido">
+    <p class="inicial-fecha">21 de septiembre</p>
+    <h1 class="titulo-manuscrito">Para mi Bartolita <span class="emoji">💛</span></h1>
+    <p class="inicial-sub">Hay algo que quería darte hoy...</p>
+    <button id="btn-abrir-regalo" class="boton-dorado">
+      <span>ABRIR MI REGALO</span> <span class="emoji">🌼</span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ TRANSICIÓN CINEMATOGRÁFICA ============ -->
+<div id="velo-transicion" aria-hidden="true">
+  <div id="flor-creciendo" class="flor-grande">
+    <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+      <line class="flor-grande__tallo" x1="100" y1="260" x2="100" y2="120" />
+      <path class="flor-grande__hoja" d="M100 200 C 60 190, 40 165, 55 140 C 80 150, 100 170, 100 200 Z" />
+      <path class="flor-grande__hoja" d="M100 215 C 140 205, 160 180, 145 155 C 120 165, 100 185, 100 215 Z" />
+      <g class="flor-grande__cabeza">
+        <circle class="flor-grande__centro" cx="100" cy="100" r="18"/>
+        <g class="flor-grande__petalos"></g>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- ============ CONTENIDO PRINCIPAL ============ -->
+<main id="contenido-principal">
+
+  <!-- MENSAJE PRINCIPAL -->
+  <section id="mensaje-principal" class="seccion revelar">
+    <div class="tarjeta-cristal">
+      <h2 class="titulo-manuscrito titulo-manuscrito--md">Para ti, mi niña <span class="emoji">💛</span></h2>
+      <p>Hoy quería darte unas flores amarillas en persona, pero esta vez no se pudo...</p>
+      <p>Así que aunque no pueda estar ahí para entregártelas con mis propias manos, no quería dejar pasar el día sin darte aunque sea un pequeño detalle.</p>
+      <p>Porque sí, las flores de verdad tendrán que esperar un poquito más... pero esas te las debo.</p>
+      <p>Y cuando llegue el momento, espero poder entregarte las flores que hoy no pude darte.</p>
+      <p class="frase-final">Mientras tanto, recibe estas virtuales, mi flaca. <span class="emoji">🌼</span></p>
+    </div>
+  </section>
+
+  <!-- JARDÍN INTERACTIVO -->
+  <section id="jardin" class="seccion revelar">
+    <h2 class="titulo-seccion">Un pequeño jardín para ti</h2>
+    <p class="subtitulo-seccion">Toca una flor, mi Bartolita.</p>
+    <div id="jardin-contenedor" class="jardin-contenedor"></div>
+    <div id="jardin-mensaje" class="mensaje-flor" aria-live="polite"></div>
+  </section>
+
+  <!-- RECUERDOS / FOTOS -->
+  <section id="recuerdos" class="seccion revelar">
+    <h2 class="titulo-seccion">Un par de recuerdos</h2>
+    <p class="subtitulo-seccion">Dos momentos que quería tener cerca hoy.</p>
+    <div class="recuerdos-galeria">
+      <figure class="polaroid polaroid--izq">
+        <div class="polaroid__marco">
+          <img alt="Un recuerdo bonito" loading="lazy"
+               src="assets/foto1.jpg"
+               data-candidatos="assets/foto1.jpg,assets/foto1.jpeg,assets/foto1.png,assets/foto1.JPG,assets/foto1.PNG"
+               data-indice="0"
+               onerror="manejarErrorFoto(this)">
+        </div>
+        <figcaption>Uno de tantos momentos 💛</figcaption>
+      </figure>
+      <figure class="polaroid polaroid--der">
+        <div class="polaroid__marco">
+          <img alt="Otro recuerdo bonito" loading="lazy"
+               src="assets/foto2.jpg"
+               data-candidatos="assets/foto2.jpg,assets/foto2.jpeg,assets/foto2.png,assets/foto2.JPG,assets/foto2.PNG"
+               data-indice="0"
+               onerror="manejarErrorFoto(this)">
+        </div>
+        <figcaption>Otro para la colección 🌼</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CARTA INTERACTIVA -->
+  <section id="carta" class="seccion revelar">
+    <h2 class="titulo-seccion">Hay algo que quería decirte...</h2>
+    <div id="sobre" class="sobre" tabindex="0" role="button" aria-label="Abrir carta">
+      <div class="sobre__solapa"></div>
+      <div class="sobre__cuerpo">
+        <p class="sobre__texto">Ábreme, Bartolita <span class="emoji">💛</span></p>
+      </div>
+      <div class="sobre__sello">🌼</div>
+    </div>
+
+    <div id="carta-papel" class="carta-papel">
+      <p id="carta-texto" class="carta-texto"></p>
+    </div>
+  </section>
+
+  <!-- RAMO VIRTUAL -->
+  <section id="ramo" class="seccion revelar">
+    <p class="ramo-frase" data-frase-1>Estas no cuentan como las flores que te debo...</p>
+    <p class="ramo-frase ramo-frase--espera" data-frase-2>Porque esas te las voy a dar en persona.</p>
+    <div class="ramo-svg-contenedor">
+      <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" class="ramo-svg">
+        <path class="ramo-papel" d="M110 380 L 210 180 L 310 380 Z"/>
+        <path class="ramo-papel ramo-papel--sombra" d="M140 380 L 210 210 L 280 380 Z"/>
+        <rect class="ramo-liston" x="185" y="255" width="50" height="16" rx="3"/>
+        <g id="ramo-flores"></g>
+      </svg>
+    </div>
+    <p class="ramo-nota">Estas son solamente un adelanto. <span class="emoji">🌼</span></p>
+  </section>
+
+  <!-- MOMENTO ESPECIAL -->
+  <section id="momento-especial" class="seccion revelar">
+    <p class="frase-momento">Hay personas que hacen que los días normales sean un poquito más bonitos.</p>
+    <p class="frase-momento frase-momento--fuerte">Y tú eres una de esas personas.</p>
+  </section>
+
+  <!-- BOTÓN ESPECIAL: HAZ FLORECER UNA FLOR -->
+  <section id="florecer" class="seccion revelar">
+    <h2 class="titulo-seccion">¿Una más?</h2>
+    <button id="btn-florecer" class="boton-dorado boton-dorado--sm">
+      <span>Haz florecer una flor</span> <span class="emoji">🌼</span>
+    </button>
+    <p id="contador-flores" class="contador-flores">Flores creadas: 0</p>
+    <p id="mensaje-florecer" class="mensaje-florecer" aria-live="polite"></p>
+    <div id="florecer-contenedor" class="jardin-contenedor jardin-contenedor--sm"></div>
+  </section>
+
+  <!-- FINAL -->
+  <section id="final" class="seccion revelar">
+    <div id="jardin-final" class="jardin-final" aria-hidden="true"></div>
+    <div class="final-texto">
+      <h2 class="titulo-manuscrito titulo-manuscrito--md">Feliz 21 de septiembre, Bartolita <span class="emoji">💛</span></h2>
+      <p class="final-linea" data-linea>Hoy son virtuales...</p>
+      <p class="final-linea" data-linea>Las de verdad están pendientes. <span class="emoji">🌼</span></p>
+      <p class="final-linea" data-linea>Cuando nos volvamos a ver, te debo un ramo.</p>
+      <p class="final-firma" data-linea>Con cariño,<br>tu Bartolo.</p>
+      <p class="final-cierre" data-linea>FIN... o apenas el comienzo de otro recuerdo. <span class="emoji">💛</span></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- REPRODUCTOR DE MÚSICA -->
+<div id="reproductor-musica" class="reproductor-musica" hidden>
+  <button id="btn-musica" class="reproductor-musica__play" aria-label="Reproducir música">♫</button>
+  <input id="volumen-musica" class="reproductor-musica__volumen" type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Volumen">
+  <audio id="audio-musica" src="assets/music.mp3" loop preload="none"></audio>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
